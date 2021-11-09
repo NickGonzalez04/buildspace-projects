@@ -54,9 +54,11 @@ const App = () => {
    * Phantom Wallet
    */
   useEffect(() => {
-    window.addEventListener('load', async (event) => {
+    const onLoad = async () => {
       await checkIfWalletIsConnected();
-    });
+    };
+    window.addEventListener('load', onLoad);
+    return () => window.removeEventListener('load', onLoad);
   }, []);
 
   return (
@@ -111,9 +113,11 @@ Since we have tested this project fully with Phantom Wallets, we recommend stick
 
 ```jsx
 useEffect(() => {
-  window.addEventListener('load', async (event) => {
+  const onLoad = async () => {
     await checkIfWalletIsConnected();
-  });
+  };
+  window.addEventListener('load', onLoad);
+  return () => window.removeEventListener('load', onLoad);
 }, []);
 ```
 
@@ -135,7 +139,7 @@ Next, we need to actually check if we're **authorized** to actually access the u
 
 Basically, **Phantom Wallet doesn't just give our wallet credentials to every website we go to**. It only gives it to websites we authorize. Again, it's just like logging in! But, what we're doing here is **checking if we're "logged in".**
 
-All we need to do is add one more line to our `checkIfWalletIsConnectedCheck` function. Check out the code below:
+All we need to do is add one more line to our `checkIfWalletIsConnected` function. Check out the code below:
 
 ```jsx
 const checkIfWalletIsConnected = async () => {
@@ -236,9 +240,11 @@ const App = () => {
 
   // UseEffects
   useEffect(() => {
-    window.addEventListener('load', async (event) => {
+    const onLoad = async () => {
       await checkIfWalletIsConnected();
-    });
+    };
+    window.addEventListener('load', onLoad);
+    return () => window.removeEventListener('load', onLoad);
   }, []);
 
   return (
@@ -351,9 +357,11 @@ const App = () => {
 
   // UseEffects
   useEffect(() => {
-    window.addEventListener('load', async (event) => {
+    const onLoad = async () => {
       await checkIfWalletIsConnected();
-    });
+    };
+    window.addEventListener('load', onLoad);
+    return () => window.removeEventListener('load', onLoad);
   }, []);
 
   return (
@@ -467,7 +475,7 @@ You have your basic UI setup and can easily "auth" a user with their Solana wall
 
 Next, we are going to get all setup with the functions we need to call our Solana program + get some data going. Our web app is kinda boring/empty rn! Let's change that :).
 
-*Note: In your Phantom settings (which you can get to by clicking the gear near the bottom right) you'll see a "Trusted Apps" section. Here, you'll see `localhost:3000`. Feel free to revoke this if you want to test the case of someone coming to your site that's never connected before. It'll basically reset your wallets access to this site.*
+*Note: In your Phantom settings (which you can get to by clicking the gear near the bottom right) you'll see a "Trusted Apps" section. Here, you'll see your Replit URL, or `localhost:3000` if you are running your app locally. Feel free to revoke this if you want to test the case of someone coming to your site that's never connected before. It'll basically reset your wallets access to this site.*
 
 ### 🚨 Progress Report
 
